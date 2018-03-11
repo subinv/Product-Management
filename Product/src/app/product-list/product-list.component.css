@@ -1,0 +1,28 @@
+.heading {
+    color:#FFF;
+    background-color:#337AB7;
+    padding: 12px 12px 12px 5px;
+    font-weight: bold;
+    font-size: 18px;
+}
+button{
+    background-color: #337AB7;
+    padding: 5px;
+    color: #FFF;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search,.searched-by,.table-data{
+    padding: 10px 0px 10px 4px;
+}
+#searched-item{
+    padding: 5px;
+}
+thead{
+    color: #337AB7;
+}
+.table{
+    padding: 10px;
+    text-align: left;
+}

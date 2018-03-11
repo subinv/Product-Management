@@ -1,0 +1,38 @@
+<div class="content">
+  <div class="heading">
+    {{pageTitle}}
+  </div>
+  <div class="search">
+    <label>Search By</label>
+    <input type="text" [(ngModel)]="listFilter" placeholder="...." id="searched-item" />
+  </div>
+  <div class="searched-by">
+    <label>Searched By : {{listFilter}}</label>
+  </div>
+  <table class="table-data" *ngIf="products && products.length">
+    <thead>
+      <tr>
+        <th class="table">
+          <button (click)="toggleImage()">{{showImage?"Hide":"Show"}} Image</button>
+        </th>
+        <th class="table">Product</th>
+        <th class="table">Code</th>
+        <th class="table">Available</th>
+        <th class="table">Price</th>
+        <th class="table">5 Star Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts">
+        <td class="table">
+          <img [src]="product.imageUrl" *ngIf="showImage" [title]="product.productName" [style.width.px]="imageWidth" [style.margin.px]="imageMargin">
+        </td>
+        <td class="table">{{product.productName}}</td>
+        <td class="table">{{product.productCode | lowercase | convertToSpace:"-"}}</td>
+        <td class="table">{{product.releaseDate}}</td>
+        <td class="table">{{product.price | currency:"INR":true:"1.2-2"}}</td>
+        <td class="table">{{product.starRating}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
