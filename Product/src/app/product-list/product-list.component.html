@@ -12,26 +12,28 @@
   <table class="table-data" *ngIf="products && products.length">
     <thead>
       <tr>
-        <th class="table">
+        <th class="tableClass">
           <button (click)="toggleImage()">{{showImage?"Hide":"Show"}} Image</button>
         </th>
-        <th class="table">Product</th>
-        <th class="table">Code</th>
-        <th class="table">Available</th>
-        <th class="table">Price</th>
-        <th class="table">5 Star Rating</th>
+        <th class="tableClass">Product</th>
+        <th class="tableClass">Code</th>
+        <th class="tableClass">Available</th>
+        <th class="tableClass">Price</th>
+        <th class="tableClass">5 Star Rating</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let product of filteredProducts">
-        <td class="table">
+        <td class="tableClass">
           <img [src]="product.imageUrl" *ngIf="showImage" [title]="product.productName" [style.width.px]="imageWidth" [style.margin.px]="imageMargin">
         </td>
-        <td class="table">{{product.productName}}</td>
-        <td class="table">{{product.productCode | lowercase | convertToSpace:"-"}}</td>
-        <td class="table">{{product.releaseDate}}</td>
-        <td class="table">{{product.price | currency:"INR":true:"1.2-2"}}</td>
-        <td class="table">{{product.starRating}}</td>
+        <td class="tableClass">{{product.productName}}</td>
+        <td class="tableClass">{{product.productCode | lowercase | convertToSpace:"-"}}</td>
+        <td class="tableClass">{{product.releaseDate}}</td>
+        <td class="tableClass">{{product.price | currency:"INR":true:"1.2-2"}}</td>
+        <td class="tableClass">
+          <app-star-component [rating]="product.starRating"></app-star-component>
+        </td>
       </tr>
     </tbody>
   </table>

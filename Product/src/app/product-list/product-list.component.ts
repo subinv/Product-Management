@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product';
+import { ProductService } from './product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -8,38 +9,31 @@ import { IProduct } from './product';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor() { 
-    this.filteredProducts = this.products;
-    this.listFilter = "cart";
-   }
+  constructor(private _productService: ProductService) {
+  }
 
   ngOnInit() {
+    this._productService.getProducts().subscribe(
+      products =>{ this.products = products;
+        this.filteredProducts = this.products;
+       },
+      err => this.erroMessage = <any>err
+    );
   }
   pageTitle: string = "Product List";
   imageWidth: number = 50;
   imageMargin: number = 2;
+  erroMessage: string;
   showImage: boolean = false;
   filteredProducts: IProduct[];
-  products: IProduct[] = [{
-    productId: 1, productName: "Golden Cart",
-    productCode: "GDN-2201", releaseDate: "March 2018",
-    description: "Just check", price: 32.98899,
-    starRating: 4.2,
-    imageUrl: "https://openclipart.org/download/298050/dog-graphics-publicdomainvectors.svg"
-  },{
-    productId: 1, productName: "xxxxx",
-    productCode: "GDN-2201", releaseDate: "March 2018",
-    description: "Just check", price: 32.98899,
-    starRating: 4.2,
-    imageUrl: "https://openclipart.org/download/298050/dog-graphics-publicdomainvectors.svg"
-  }];
+  products: IProduct[];
   _listFilter: string;
   get listFilter(): string {
     return this._listFilter;
   }
   set listFilter(value: string) {
+
     this._listFilter = value;
-    console.log("gtrds",this._listFilter);
     this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
   }
 
